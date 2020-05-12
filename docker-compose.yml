@@ -1,0 +1,9 @@
+version: '3'
+services:
+  php-fpm:
+    build: 
+        context: ./
+        dockerfile: Dockerfile
+    container_name: php-fpm
+    ports:
+      - 3000:3000
