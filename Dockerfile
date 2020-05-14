@@ -1,4 +1,4 @@
-FROM php:lastest-fpm-alpine
+FROM php:latest-fpm-alpine
 
 LABEL maintainer="Packie Pat <biyongyao@gmail.com>"
 
