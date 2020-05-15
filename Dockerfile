@@ -1,6 +1,6 @@
-FROM php:latest-fpm-alpine
+FROM php:fpm-alpine
 
-LABEL maintainer="Packie Pat <biyongyao@gmail.com>"
+LABEL maintainer="Packie <biyongyao@gmail.com>"
 
 RUN apk update \
     && apk add --no-cache git mysql-client curl libmcrypt libmcrypt-dev openssh-client icu-dev \
