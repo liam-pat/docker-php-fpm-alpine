@@ -19,6 +19,14 @@ docker push biyongyao/php-fpm-dev:tagname
 docker run --rm biyongyao/php-fpm-dev:7.4 php -v
 ```
 
+## docker compose Run Web-Serve
+
+```bash
+docker-composer up
+
+## Browse in browser : localhost:10010
+```
+
 ## PHP Modules
 
 ```config
