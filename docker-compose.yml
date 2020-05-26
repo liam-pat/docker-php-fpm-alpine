@@ -8,5 +8,5 @@ services:
     ports:
       - 10010:8000
     volumes:
-      - ./web:/var/www/html
+      - ./web/index.php:/var/www/html/index.php
     command: php -S="0.0.0.0:8000" -t="/var/www/html"
