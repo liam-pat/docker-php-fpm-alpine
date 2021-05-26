@@ -1,6 +1,6 @@
 sudo: required
 services: docker
 script:
-  - docker build -t biyongyao/php-fpm-dev .
+  - docker build -t biyongyao/php-fpm-prod:8.0 .
 after_script:
   - docker images
