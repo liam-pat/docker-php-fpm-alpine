@@ -13,7 +13,7 @@ RUN apk update \
     && echo "xdebug.mode = debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.client_host = host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql zip \
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql zip opcache bcmath \
     && curl $PHP_COMPOSER_URL -o /usr/local/bin/composer \
     && chmod a+x /usr/local/bin/composer \
     && /usr/local/bin/composer self-update \
