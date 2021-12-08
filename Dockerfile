@@ -19,3 +19,7 @@ RUN apk update \
     && curl $PHP_COMPOSER_URL -o /usr/local/bin/composer \
     && chmod a+x /usr/local/bin/composer \
     && /usr/local/bin/composer self-update
+
+CMD ["php-fpm"]
+
+EXPOSE 9000
