@@ -7,7 +7,7 @@ ENV PHP_COMPOSER_URL https://getcomposer.org/composer-stable.phar
 
 RUN apk update \
     && apk add --no-cache git wget unzip curl libpq-dev libzip-dev libmcrypt \
-    libjpeg-turbo-dev libpng-dev libwebp-dev freetype-dev \
+    libjpeg-turbo-dev libpng-dev libwebp-dev freetype-dev bash\
     g++ make autoconf \
     && pecl install redis xdebug \
     && docker-php-ext-enable xdebug redis \
@@ -20,6 +20,6 @@ RUN apk update \
     && chmod a+x /usr/local/bin/composer \
     && /usr/local/bin/composer self-update
 
-CMD ["php-fpm"]
+CMD crond && php-fpm
 
 EXPOSE 9000
