@@ -18,7 +18,8 @@ RUN apk update \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql zip opcache bcmath gd \
     && curl $PHP_COMPOSER_URL -o /usr/local/bin/composer \
     && chmod a+x /usr/local/bin/composer \
-    && /usr/local/bin/composer self-update
+    && /usr/local/bin/composer self-update \
+    && rm -rf /tmp/*
 
 CMD crond && php-fpm
 
