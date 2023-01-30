@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.2-fpm-alpine
 
 LABEL maintainer="Packie <biyongyao@gmail.com>"
 
@@ -6,7 +6,7 @@ LABEL maintainer="Packie <biyongyao@gmail.com>"
 ENV PHP_COMPOSER_URL https://getcomposer.org/composer-stable.phar
 
 RUN apk update \
-    && apk add --no-cache git wget unzip curl libpq-dev libzip-dev libmcrypt \
+    && apk add --no-cache git wget unzip curl libpq-dev libzip-dev libmcrypt linux-headers openssh\
     libjpeg-turbo-dev libpng-dev libwebp-dev freetype-dev bash\
     g++ make autoconf \
     && pecl install redis xdebug \
