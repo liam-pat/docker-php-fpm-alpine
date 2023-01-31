@@ -31,7 +31,7 @@ php -S="0.0.0.0:8000" -t="/var/www/html"
 ## docker compose Run Web-Serve
 ```bash
 ## Browse in browser : localhost:10010
-bash > docker-composer up
+bash > docker-compose up
 ```
 
 ## PHP Modules
