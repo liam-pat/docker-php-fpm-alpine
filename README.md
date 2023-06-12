@@ -1,21 +1,15 @@
 # PHP-FPM-ALPINE
 
-> For develop environment
-
-## Support Version
-
-* 7.3.x
-* 8.2.x
+> For PHP developer for developing
 
 ## Getting images
 
 ```bash
+# select git branch
+bash > git checkout {{ BRANCH-NAME }}
 # build image
-bash > docker build -t biyongyao/php-fpm-alpine-dev:8.2 .
-# pull from dockerhub
-bash > docker pull biyongyao/php-fpm-prod:8.2
-# php version
-bash > docker run --rm biyongyao/php-fpm-prod:8.0 php -v
+bash > docker build -t {{ DOCKER-IMAGE-NAME }} .
+bash > docker run --rm {{ DOCKER-IMAGE-NAME }} php -v
 ```
 
 ## Running as server
@@ -24,13 +18,12 @@ bash > docker run --rm biyongyao/php-fpm-prod:8.0 php -v
 bash > docker run --rm \
 --name phpfpm \
 -v ./web/index.php:/var/www/html/index.php \
--p 10010:8000 biyongyao/php-fpm-prod:8.0 \
+-p 10010:8000 {{ DOCKER-IMAGE-NAME }} \
 php -S="0.0.0.0:8000" -t="/var/www/html"
 ```
 
-## docker compose Run Web-Serve
+## docker compose 
 ```bash
-## Browse in browser : localhost:10010
 bash > docker-compose up
 ```
 
