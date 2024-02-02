@@ -1,30 +1,29 @@
 # PHP-FPM-ALPINE
 
-> For PHP developer for developing
+> For developing.....
 
 ## Getting images
 
 ```bash
-# select git branch
-bash > git checkout {{ BRANCH-NAME }}
-# build image
-bash > docker build -t {{ DOCKER-IMAGE-NAME }} .
-bash > docker run --rm {{ DOCKER-IMAGE-NAME }} php -v
+# without xdebug
+bash > docker pull biyongyao/php-fpm-alpine-prod
+
+# install the xdebug module
+bash > docker pull biyongyao/php-fpm-alpine-dev
 ```
 
-## Running as server
+## Inspect PHP Information
+
+### 1) Docker Run 
 
 ```bash
-bash > docker run --rm \
---name phpfpm \
--v ./web/index.php:/var/www/html/index.php \
--p 10010:8000 {{ DOCKER-IMAGE-NAME }} \
-php -S="0.0.0.0:8000" -t="/var/www/html"
+bash > docker run --rm --name phpfpm -v ./web/index.php:/var/www/html/index.php -p 10010:8000 {{ DOCKER-IMAGE-NAME }} php -S="0.0.0.0:8000" -t="/var/www/html"
 ```
 
-## docker compose 
+### 2) Docker compose
+
 ```bash
-bash > docker-compose up
+bash > docker-compose up -d
 ```
 
 ## PHP Modules
