@@ -33,4 +33,4 @@ jobs:
         with:
           push: true
           platforms: linux/arm,linux/arm64,linux/amd64
-          tags: biyongyao/php-fpm-alpine-dev:latest
+          tags: biyongyao/php-fpm-alpine-prod:latest
