@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-alpine
+FROM php:8.2-fpm-alpine
 
 LABEL maintainer="Packie <biyongyao@gmail.com>"
 
@@ -13,7 +13,7 @@ RUN apk update \
     && docker-php-ext-enable redis \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-configure gd --with-webp --with-jpeg --with-freetype \
-    && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql zip opcache bcmath gd \
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql zip opcache bcmath gd pcntl ftp calendar\
     && curl $PHP_COMPOSER_URL -o /usr/local/bin/composer \
     && chmod a+x /usr/local/bin/composer \
     && /usr/local/bin/composer self-update \
