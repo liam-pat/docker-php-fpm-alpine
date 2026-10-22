@@ -5,25 +5,49 @@
 ## Getting images
 
 ```bash
-# without xdebug
-bash > docker pull biyongyao/php-fpm-alpine-prod
-
-# install the xdebug module
-bash > docker pull biyongyao/php-fpm-alpine-dev
+docker pull --platform linux/arm64 biyongyao/php-fpm-alpine-dev:8.4
+docker pull --platform linux/arm64 biyongyao/php-fpm-alpine-prod:8.4
 ```
 
 ## Inspect PHP Information
 
-### 1) Docker Run 
+### 1) Docker Build
 
+- PROD version
 ```bash
-bash > docker run --rm --name phpfpm -v ./web/index.php:/var/www/html/index.php -p 10010:8000 {{ DOCKER-IMAGE-NAME }} php -S="0.0.0.0:8000" -t="/var/www/html"
+docker buildx build --pull \
+  --build-arg PHP_VERSION=8.4 \
+  --platform linux/amd64,linux/arm64 \
+  --progress=plain \
+  -t biyongyao/php-fpm-alpine-prod:8.4 \
+  --push .
 ```
 
-### 2) Docker compose
+- DEV version
+```bash
+docker buildx build --pull \
+  --build-arg PHP_VERSION=8.5 \
+  --platform linux/amd64,linux/arm64 \
+  --progress=plain \
+  -f Dockerfile.dev.yml \
+  -t biyongyao/php-fpm-alpine-dev:8.5 \
+  --push .
+```
+
+### 2) Verification
 
 ```bash
-bash > docker-compose up -d
+# inspect the verion & modules
+docker run --rm biyongyao/php-fpm-alpine-prod:8.4 php -v
+docker run --rm biyongyao/php-fpm-alpine-prod:8.4 php-fpm -v
+docker run --rm biyongyao/php-fpm-alpine-prod:8.4 php -m
+
+# http:127.0.0.1:8000 , check the php info
+docker run --rm \
+  -v "$(pwd)/web/index.php:/website/index.php:ro" \
+  -p 8000:8000 \
+  biyongyao/php-fpm-alpine-prod:8.4 \
+  php -S 0.0.0.0:8000 -t /website
 ```
 
 ## PHP Modules
@@ -31,6 +55,8 @@ bash > docker-compose up -d
 ```config
 [PHP Modules]
 bcmath
+calendar
+cgi-fcgi
 Core
 ctype
 curl
@@ -47,6 +73,7 @@ libxml
 mbstring
 mysqlnd
 openssl
+pcntl
 pcre
 PDO
 pdo_mysql
@@ -66,7 +93,6 @@ SPL
 sqlite3
 standard
 tokenizer
-xdebug
 xml
 xmlreader
 xmlwriter
@@ -76,6 +102,4 @@ zlib
 
 [Zend Modules]
 Zend OPcache
-Xdebug
 ```
-
